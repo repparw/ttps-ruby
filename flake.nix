@@ -4,6 +4,7 @@
     nixpkgs-ruby.url = "github:bobvanderlinden/nixpkgs-ruby";
     nixpkgs-ruby.inputs.nixpkgs.follows = "nixpkgs";
     flake-utils.url = "github:numtide/flake-utils";
+    bundix.url = "github:nix-community/bundix";
   };
 
   outputs =
@@ -42,8 +43,8 @@
           mkShell {
             buildInputs = [
               gems
-              ruby
               bundix
+              bundix.default
             ];
           };
       }
