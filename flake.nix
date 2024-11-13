@@ -84,7 +84,6 @@
               ++ (with pkgs; [
                 yarn
                 rufo
-                # more packages here
               ]);
           };
         };
