@@ -1,5 +1,6 @@
 {
   "nodes": {
+<<<<<<< HEAD
     "bob-ruby": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -59,11 +60,14 @@
         "type": "github"
       }
     },
+=======
+>>>>>>> 56952c8 (rails new, initial setup)
     "flake-utils": {
       "inputs": {
         "systems": "systems"
       },
       "locked": {
+<<<<<<< HEAD
         "lastModified": 1694529238,
         "narHash": "sha256-zsNZZGTGnMOf9YpHKJqMSsa0dXbfmxeoJ7xHlrt+xmY=",
         "owner": "numtide",
@@ -82,6 +86,8 @@
         "systems": "systems_2"
       },
       "locked": {
+=======
+>>>>>>> 56952c8 (rails new, initial setup)
         "lastModified": 1731533236,
         "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
         "owner": "numtide",
@@ -97,6 +103,7 @@
     },
     "nixpkgs": {
       "locked": {
+<<<<<<< HEAD
         "lastModified": 0,
         "narHash": "sha256-IigrKK3vYRpUu+HEjPL/phrfh7Ox881er1UEsZvw9Q4=",
         "path": "/nix/store/0sxsfzswhjck7f4sbsvznz285s4i7y64-source",
@@ -119,10 +126,25 @@
       "original": {
         "id": "nixpkgs",
         "type": "indirect"
+=======
+        "lastModified": 1731139594,
+        "narHash": "sha256-IigrKK3vYRpUu+HEjPL/phrfh7Ox881er1UEsZvw9Q4=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "76612b17c0ce71689921ca12d9ffdc9c23ce40b2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+>>>>>>> 56952c8 (rails new, initial setup)
       }
     },
     "root": {
       "inputs": {
+<<<<<<< HEAD
         "bob-ruby": "bob-ruby",
         "bundix": "bundix",
         "fu": "fu",
@@ -146,6 +168,10 @@
         "owner": "inscapist",
         "repo": "ruby-nix",
         "type": "github"
+=======
+        "flake-utils": "flake-utils",
+        "nixpkgs": "nixpkgs"
+>>>>>>> 56952c8 (rails new, initial setup)
       }
     },
     "systems": {
@@ -162,6 +188,7 @@
         "repo": "default",
         "type": "github"
       }
+<<<<<<< HEAD
     },
     "systems_2": {
       "locked": {
@@ -177,6 +204,8 @@
         "repo": "default",
         "type": "github"
       }
+=======
+>>>>>>> 56952c8 (rails new, initial setup)
     }
   },
   "root": "root",
