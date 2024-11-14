@@ -1,21 +1,20 @@
-<header class="bg-white shadow-sm">
+<header class="bg-white dark:bg-gray-800 shadow-sm">
   <nav class="container mx-auto px-4">
     <div class="flex justify-between items-center h-16">
       <%= link_to root_path, class: "flex items-center" do %>
-        <span class="text-xl font-bold text-gray-800">Avivas</span>
+        <%= image_tag "avivas.png", alt: "Avivas Logo", class: "h-16 w-auto" %>
       <% end %>
 
       <div class="hidden md:flex space-x-8">
-        <%= link_to "Inicio", root_path, class: "text-gray-600 hover:text-gray-900" %>
-        <%= link_to "Productos", products_path, class: "text-gray-600 hover:text-gray-900" %>
+        <%= link_to "Productos", products_path, class: "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white" %>
         <div class="relative group">
-          <%= link_to "#", class: "text-gray-600 hover:text-gray-900" do %>
+          <%= link_to "#", class: "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white" do %>
             Categorías
           <% end %>
-          <div class="absolute hidden group-hover:block bg-white shadow-lg mt-2">
+          <div class="absolute hidden group-hover:block bg-white dark:bg-gray-700 shadow-lg mt-2 z-10">
             <div class="py-2">
               <% Category.all.each do |category| %>
-                <%= link_to category.name, category_products_path(category), class: "block px-4 py-2 text-gray-600 hover:text-gray-900" %>
+                <%= link_to category.name, category_products_path(category), class: "block px-4 py-2 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white" %>
               <% end %>
             </div>
           </div>
@@ -23,14 +22,13 @@
       </div>
 
       <div class="flex items-center">
-        <% if user_signed_in? %>
-          <%= link_to "Panel Admin", admin_root_path, class: "text-gray-600 hover:text-gray-900 mr-4" if current_user.can_access_admin? %>
-          <%= link_to "Cerrar Sesión", destroy_user_session_path, method: :delete, class: "text-gray-600 hover:text-gray-900" %>
+          <% if user_signed_in? %>
+          <%= link_to "Panel Admin", admin_root_path, class: "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white mr-4" if current_user.can_access_admin? %>
+          <%= link_to "Cerrar Sesión", destroy_user_session_path, method: :delete, class: "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white" %>
         <% else %>
-          <%= link_to "Iniciar Sesión", new_user_session_path, class: "text-gray-600 hover:text-gray-900" %>
+          <%= link_to "Iniciar Sesión", new_user_session_path, class: "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white" %>
         <% end %>
       </div>
     </div>
   </nav>
 </header>
-
