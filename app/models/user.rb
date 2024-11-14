@@ -11,6 +11,6 @@ class User < ApplicationRecord
   validates :role, presence: true
 
   def active_for_authentication?
-    super && !deactivated?
+    super && deactivated_at.nil?
   end
 end

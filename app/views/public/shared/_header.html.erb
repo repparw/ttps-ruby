@@ -23,8 +23,8 @@
 
       <div class="flex items-center">
           <% if user_signed_in? %>
-          <%= link_to "Panel Admin", admin_root_path, class: "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white mr-4" if current_user.can_access_admin? %>
-          <%= link_to "Cerrar Sesión", destroy_user_session_path, method: :delete, class: "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white" %>
+          <%= link_to "Panel Admin", admin_root_path, class: "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white mr-4" if current_user.admin? %>
+          <%= button_to "Cerrar Sesión", destroy_user_session_path, method: :delete, class: "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white" %>
         <% else %>
           <%= link_to "Iniciar Sesión", new_user_session_path, class: "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white" %>
         <% end %>
