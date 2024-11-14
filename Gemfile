@@ -20,8 +20,4 @@ end
 
 group :development do
   gem 'web-console'
-<<<<<<< HEAD
-  gem 'error_highlight'
-=======
->>>>>>> 56952c8 (rails new, initial setup)
 end
