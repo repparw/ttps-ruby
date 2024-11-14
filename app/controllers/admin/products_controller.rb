@@ -1,6 +1,6 @@
 module Admin
   class ProductsController < Admin::BaseController
-    before_action :set_product, only: [:show, :edit, :update, :destroy]
+    before_action :set_product, only: [ :show, :edit, :update, :destroy ]
 
     def index
       @products = Product.all
@@ -17,7 +17,7 @@ module Admin
       authorize @product
 
       if @product.save
-        redirect_to admin_products_path, notice: 'Producto creado exitosamente.'
+        redirect_to admin_products_path, notice: "Producto creado exitosamente."
       else
         render :new
       end
@@ -26,7 +26,7 @@ module Admin
     def update
       authorize @product
       if @product.update(product_params)
-        redirect_to admin_products_path, notice: 'Producto actualizado exitosamente.'
+        redirect_to admin_products_path, notice: "Producto actualizado exitosamente."
       else
         render :edit
       end
@@ -35,7 +35,7 @@ module Admin
     def destroy
       authorize @product
       @product.soft_delete
-      redirect_to admin_products_path, notice: 'Producto eliminado exitosamente.'
+      redirect_to admin_products_path, notice: "Producto eliminado exitosamente."
     end
 
     private

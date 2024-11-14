@@ -1,6 +1,6 @@
 module Admin
   class SalesController < Admin::BaseController
-    before_action :set_sale, only: [:show, :cancel]
+    before_action :set_sale, only: [ :show, :cancel ]
 
     def index
       @sales = Sale.includes(:products, :user).all
@@ -18,7 +18,7 @@ module Admin
       authorize @sale
 
       if @sale.save
-        redirect_to admin_sales_path, notice: 'Venta registrada exitosamente.'
+        redirect_to admin_sales_path, notice: "Venta registrada exitosamente."
       else
         render :new
       end
@@ -27,9 +27,9 @@ module Admin
     def cancel
       authorize @sale
       if @sale.cancel!
-        redirect_to admin_sales_path, notice: 'Venta cancelada exitosamente.'
+        redirect_to admin_sales_path, notice: "Venta cancelada exitosamente."
       else
-        redirect_to admin_sales_path, alert: 'No se pudo cancelar la venta.'
+        redirect_to admin_sales_path, alert: "No se pudo cancelar la venta."
       end
     end
 
@@ -42,7 +42,7 @@ module Admin
     def sale_params
       params.require(:sale).permit(
         :client_id,
-        sale_items_attributes: [:product_id, :quantity, :price]
+        sale_items_attributes: [ :product_id, :quantity, :price ]
       )
     end
   end

@@ -1,5 +1,5 @@
 module Public
   class BaseController < ApplicationController
-    layout 'storefront'
+    layout "storefront"
   end
 end

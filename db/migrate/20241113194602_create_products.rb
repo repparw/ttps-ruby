@@ -12,7 +12,7 @@ class CreateProducts < ActiveRecord::Migration[8.0]
 
       t.timestamps
     end
-    
+
     add_index :products, :name
     add_index :products, :deleted_at
   end
