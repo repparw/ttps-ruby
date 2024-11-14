@@ -1,0 +1,26 @@
+<div class="container mx-auto py-8">
+  <h1 class="text-3xl font-bold mb-4">Storefront</h1>
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+    <% @products.each do |product| %>
+      <div class="bg-white rounded-lg shadow-md overflow-hidden">
+        <%= link_to product_path(product) do %>
+          <% if product.images.attached? %>
+            <%= image_tag product.images.first, alt: product.name, class: "w-full h-40 object-cover" %>
+          <% else %>
+            <%= image_tag asset_path('placeholder.png'), alt: product.name, class: "w-full h-40 object-cover" %>
+          <% end %>
+        <% end %>
+        <div class="p-4">
+          <h2 class="text-lg font-medium"><%= link_to product.name, product_path(product) %></h2>
+          <p class="text-gray-600 mb-2"><%= truncate(product.description, length: 60) %></p>
+          <p class="text-gray-700 font-bold">$<%= product.unit_price %></p>
+          <% if product.available? %>
+            <p class="text-green-500">In Stock</p>
+          <% else %>
+            <p class="text-red-500">Out of Stock</p>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

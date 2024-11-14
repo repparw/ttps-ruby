@@ -1,0 +1,14 @@
+<header class="bg-white shadow">
+  <div class="flex justify-between items-center px-6 py-4">
+    <h1 class="text-2xl font-semibold text-gray-800">Panel de Administración</h1>
+
+    <div class="flex items-center">
+      <span class="text-gray-600 mr-4">
+        <%= current_user.email %>
+        (<%= current_user.role %>)
+      </span>
+      <%= link_to "Cerrar Sesión", destroy_user_session_path, method: :delete, 
+          class: "bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded" %>
+    </div>
+  </div>
+</header>

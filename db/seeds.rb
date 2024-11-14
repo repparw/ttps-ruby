@@ -10,22 +10,20 @@ User.find_or_create_by!(email: 'admin@avivas.com') do |user|
 end
 
 # Create categories (only if they don't exist)
-categories = ['Running', 'Training', 'Basketball', 'Soccer', 'Tennis'].map do |name|
+categories = %w[Running Training Basketball Soccer Tennis].map do |name|
   Category.find_or_create_by!(name: name)
 end
 
 # Create sample customers (with duplicate checking)
 10.times do
-  begin
-    Customer.create!(
-      name: Faker::Name.unique.name,
-      email: Faker::Internet.unique.email,
-      phone: Faker::PhoneNumber.phone_number
-    )
-  rescue Faker::UniqueGenerator::RetryLimitExceeded
-    Faker::UniqueGenerator.clear
-    retry
-  end
+  Customer.create!(
+    name: Faker::Name.unique.name,
+    email: Faker::Internet.unique.email,
+    phone: Faker::PhoneNumber.phone_number
+  )
+rescue Faker::UniqueGenerator::RetryLimitExceeded
+  Faker::UniqueGenerator.clear
+  retry
 end
 
 # Create sample products
@@ -42,7 +40,7 @@ categories.each do |category|
       unit_price: Faker::Commerce.price(range: 20..200.0),
       stock: Faker::Number.between(from: 10, to: 100),
       category: category,
-      size: ['S', 'M', 'L', 'XL'].sample,
+      size: %w[S M L XL].sample,
       color: Faker::Color.color_name
     )
 
@@ -51,7 +49,7 @@ categories.each do |category|
     retry_count = 0
 
     begin
-      file = URI.open("https://picsum.photos/800/600")
+      file = URI.open('https://picsum.photos/800/600')
       product.images.attach(
         io: file,
         filename: "#{product_name.parameterize}.jpg",
@@ -77,4 +75,4 @@ categories.each do |category|
   end
 end
 
-puts "Seed completed successfully!"
+puts 'Seed completed successfully!'

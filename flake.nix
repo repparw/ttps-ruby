@@ -45,7 +45,7 @@
             export BUNDLE_PATH="vendor/bundle"
 
             # Add Bundler bins to PATH
-            export PATH="$PWD/bin:$GEM_HOME/ruby/*/bin:$PATH"
+            export PATH="$PWD/bin:$PWD/vendor/bundle/ruby/3.2.0/bin:$PATH"
 
             # Install basic gems if they're not already installed
             if ! command -v bundle >/dev/null 2>&1; then
