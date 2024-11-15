@@ -1,26 +1,26 @@
+<hr class="border-gray-700 dark:border-gray-600" id="footer-start">
 <footer class="bg-gray-800 text-white dark:bg-gray-900 dark:text-gray-300">
   <div class="container mx-auto px-4 py-8 flex flex-col justify-center items-center">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
-      <div>
-        <h4>Enlaces</h4>
-        <ul class="space-y-2 text-center">
-          <li><%= link_to "Inicio", root_path, class: "text-gray-400 hover:text-white dark:text-gray-500 dark:hover:text-gray-300" %></li>
-          <li><%= link_to "Categorías", categories_path, class: "text-gray-400 hover:text-white dark:text-gray-500 dark:hover:text-gray-300" %></li>
-        </ul>
-      </div>
+      <div class="flex justify-center space-x-8">
+        <div class="text-center">
+          <h4>Enlaces</h4>
+          <ul class="space-y-2 text-center">
+            <li><%= link_to "Inicio", root_path, class: "text-gray-400 hover:text-white dark:text-gray-500 dark:hover:text-gray-300" %></li>
+            <li><%= link_to "Categorías", categories_path, class: "text-gray-400 hover:text-white dark:text-gray-500 dark:hover:text-gray-300" %></li>
+          </ul>
+        </div>
 
-      <div>
-        <h4>Contacto</h4>
-        <p class="text-gray-400 dark:text-gray-500">
-          Email: contacto@avivas.com<br>
-          Teléfono: (123) 456-7890
-        </p>
+        <div class="text-center">
+          <h4>Contacto</h4>
+          <p class="text-gray-400 dark:text-gray-500">
+            Email: contacto@avivas.com<br>
+            Teléfono: (123) 456-7890
+          </p>
+        </div>
       </div>
-    </div>
 
     <div class="mt-8 pt-8 border-t border-gray-700 text-center dark:border-gray-600">
       <p class="text-gray-400 dark:text-gray-500">&copy; <%= Time.current.year %> Avivas. Todos los derechos reservados.</p>
     </div>
   </div>
 </footer>
-

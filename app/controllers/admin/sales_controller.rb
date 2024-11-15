@@ -3,7 +3,7 @@ module Admin
     before_action :set_sale, only: [ :show, :cancel ]
 
     def index
-      @sales = Sale.includes(:products, :user).all
+      @sales = Sale.includes(:products, :user).active.order(created_at: :desc).page(params[:page]).per(10)
       authorize @sales
     end
 
@@ -31,7 +31,7 @@ module Admin
 
     def cancel
       authorize @sale
-      if @sale.cancel!
+      if @sale.cancel
         redirect_to admin_sales_path, notice: "Venta cancelada exitosamente."
       else
         redirect_to admin_sales_path, alert: "No se pudo cancelar la venta."
