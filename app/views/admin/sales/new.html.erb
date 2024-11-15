@@ -6,13 +6,18 @@
 
 <%= form_with(model: [:admin, @sale], local: true, class: "space-y-6") do |form| %>
   <div class="field">
-    <%= form.label :user_id, "Usuario", class: "block text-sm font-medium text-gray-700 dark:text-gray-300" %>
+    <%= form.label :user_id, "Empleado", class: "block text-sm font-medium text-gray-700 dark:text-gray-300" %>
     <%= form.collection_select :user_id, User.all, :id, :username, {}, class: "mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300" %>
   </div>
 
   <div class="field">
     <%= form.label :customer_id, "Cliente", class: "block text-sm font-medium text-gray-700 dark:text-gray-300" %>
     <%= form.collection_select :customer_id, Customer.all, :id, :name, {}, class: "mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :sale_date, "Fecha y Hora de Venta", class: "block text-sm font-medium text-gray-700 dark:text-gray-300" %>
+    <%= form.datetime_local_field :sale_date, class: "mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300", value: Time.current.strftime("%Y-%m-%dT%H:%M") %>
   </div>
 
   <div class="field">

@@ -15,6 +15,7 @@ class Sale < ApplicationRecord
   validates :user, presence: true
   validates :customer, presence: true
   validates :sale_items, presence: true
+  validates :sale_date, presence: true
   validate :must_have_at_least_one_item
   validate :check_stock_availability
 

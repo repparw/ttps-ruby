@@ -63,13 +63,11 @@
 
             <% if current_user.admin? || (current_user.manager? && !current_user.admin?) %>
               <div class="mt-4 flex justify-end space-x-2">
-                <%= link_to 'Edit', edit_admin_sale_path(sale), 
-                    class: "text-blue-500 dark:text-blue-400 hover:underline" %>
                 <% if sale.active? %>
                   <%= button_to 'Cancel', cancel_admin_sale_path(sale), 
                       method: :patch,
                       data: { confirm: 'Are you sure you want to cancel this sale?' },
-                      class: 'text-red-500 dark:text-red-400 hover:underline' %>
+                      class: 'text-red-500 dark:text-red-400 hover:underline ml-2' %>
                 <% end %>
               </div>
             <% end %>

@@ -3,7 +3,7 @@ module Admin
     before_action :set_sale, only: [ :show, :cancel ]
 
     def index
-      @sales = Sale.includes(:products, :user).active.order(created_at: :desc).page(params[:page]).per(10)
+      @sales = Sale.includes(:products, :user).active.order(created_at: :desc).page(params[:page]).per(5)
       authorize @sales
     end
 
@@ -48,6 +48,7 @@ module Admin
       params.require(:sale).permit(
         :user_id,
         :customer_id,
+        :sale_date,
         sale_items_attributes: [ :product_id, :quantity, :price ]
       )
     end
