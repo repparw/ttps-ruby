@@ -7,10 +7,14 @@ class Product < ApplicationRecord
   # Validations
   validates :name, presence: true
   validates :description, presence: true
-  validates :unit_price, presence: true, numericality: { greater_than: 0 }
+  validates :price, presence: true, numericality: { greater_than: 0 }
   validates :stock, presence: true, numericality: { greater_than_or_equal_to: 0 }
   validates :images, presence: true, content_type: [ "image/png", "image/jpg", "image/jpeg" ]
   validates :category, presence: true
+
+  # Optional fields
+  validates :size, allow_blank: true, length: { maximum: 50 }
+  validates :color, allow_blank: true, length: { maximum: 30 }
 
   # Scopes
   scope :active, -> { where(deleted_at: nil) }
@@ -22,5 +26,13 @@ class Product < ApplicationRecord
 
   def available?
     self.class.available.exists?(id: id)
+  end
+
+  def self.ransackable_attributes(auth_object = nil)
+    %w[name description]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    [ "name", "description" ]
   end
 end

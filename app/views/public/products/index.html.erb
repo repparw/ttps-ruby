@@ -1,36 +1,29 @@
-<h1 class="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">Products</h1>
+<h1>Products</h1>
 
-<div class="categories mb-8">
-  <h2 class="text-xl font-semibold mb-2 text-gray-900 dark:text-gray-100">Categories</h2>
-  <ul class="list-disc pl-5">
-    <% @categories.each do |category| %>
-      <li class="mb-1 text-gray-700 dark:text-gray-300"><%= category.name %></li>
-    <% end %>
-  </ul>
-</div>
+  <div class="mb-4">
+        <div class="mb-4 flex justify-center">
+          <%= search_form_for @q do |f| %>
+            <div class="flex items-center dark:text-gray-300">
+              <%= f.search_field :name_or_description_cont, class: "form-input dark:bg-gray-800 dark:text-gray-300" %>
+              <%= f.submit "Search", class: "ml-2 btn btn-primary dark:bg-gray-700 dark:text-gray-300" %>
+            </div>
+          <% end %>
+        </div>
+  </div>
 
-<div class="products">
-  <h2 class="text-xl font-semibold mb-2 text-gray-900 dark:text-gray-100">Available Products</h2>
-  <ul class="space-y-4">
+  <h2>Available Products</h2>
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
     <% if @products.empty? %>
       <p class="text-gray-500 dark:text-gray-400">No available products found.</p>
     <% else %>
       <% @products.each do |product| %>
-      <li class="border p-4 rounded-lg shadow-sm bg-white dark:bg-gray-800">
-        <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100"><%= product.name %></h3>
-        <p class="text-gray-700 dark:text-gray-300"><%= product.description %></p>
-        <p class="text-gray-900 font-bold dark:text-gray-100">Price: <%= number_to_currency(product.unit_price) %></p>
-        <p class="text-gray-600 dark:text-gray-400">Stock: <%= product.stock %></p>
-        <% if product.images.attached? %>
-          <div class="product-images mt-2 flex space-x-2">
-            <% product.images.each do |image| %>
-              <%= image_tag(image, size: "100x100", class: "rounded") %>
-            <% end %>
-          </div>
-        <% end %>
-      </li>
+      <%= render partial: 'shared/product_card', locals: { product: product, hide_category: false} %>
       <% end %>
     <% end %>
-  </ul>
+  </div>
+  <div class="mt-8">
+    <%= paginate @products %>
+  </div>
 </div>
+
 

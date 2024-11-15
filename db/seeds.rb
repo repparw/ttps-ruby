@@ -37,7 +37,7 @@ categories.each do |category|
     product = Product.new(
       name: product_name,
       description: Faker::Lorem.paragraph,
-      unit_price: Faker::Commerce.price(range: 20..200.0),
+      price: Faker::Commerce.price(range: 20..200.0),
       stock: Faker::Number.between(from: 10, to: 100),
       category: category,
       size: %w[S M L XL].sample,

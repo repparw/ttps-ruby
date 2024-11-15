@@ -1,6 +1,6 @@
 <% flash.each do |name, msg| %>
   <% if msg.is_a?(String) %>
-    <div class="flash-message <%= name == 'notice' ? 'bg-green-100 border-green-400 text-green-700' : 'bg-red-100 border-red-400 text-red-700' %> border px-4 py-3 rounded relative" role="alert">
+    <div class="flash-message text-center <%= name == 'notice' ? 'bg-green-100 border-green-400 text-green-700' : 'bg-red-100 border-red-400 text-red-700' %> border px-4 py-3 rounded relative" role="alert">
       <span class="block sm:inline"><%= msg %></span>
       <button class="absolute top-0 bottom-0 right-0 px-4 py-3" onclick="this.parentElement.remove()">
         <span class="sr-only">Cerrar</span>

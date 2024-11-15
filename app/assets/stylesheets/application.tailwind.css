@@ -53,6 +53,22 @@
     color: hsl(var(--foreground));
   }
 
+  h1 {
+    @apply text-3xl font-bold mb-8 text-center;
+  }
+
+  h2 {
+    @apply text-2xl font-bold mb-6 text-center;
+  }
+
+  h3 {
+    @apply text-xl font-semibold mb-4 text-center;
+  }
+
+  h4 {
+    @apply text-lg font-semibold mb-4 text-center;
+  }
+
   h1,
   h2,
   h3,
@@ -72,6 +88,6 @@
   }
 
   a:hover {
-    color: hsl(var(--primary-foreground));
+    color: hsl(var(--muted-foreground));
   }
 }

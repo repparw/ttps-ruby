@@ -1,19 +1,24 @@
 <h1><%= @product.name %></h1>
 
-<p><strong>Description:</strong> <%= @product.description %></p>
-<p><strong>Unit Price:</strong> <%= number_to_currency(@product.unit_price) %></p>
-<p><strong>Stock:</strong> <%= @product.stock %></p>
-<p><strong>Category:</strong> <%= @product.category.name %></p>
+<div class="bg-white dark:bg-gray-800 shadow-md rounded p-4 mb-4">
+  <p class="mb-2 dark:text-gray-300"><strong>Description:</strong> <%= @product.description %></p>
+  <p class="mb-2 dark:text-gray-300"><strong>Unit Price:</strong> <%= number_to_currency(@product.price) %></p>
+  <p class="mb-2 dark:text-gray-300"><strong>Stock:</strong> <%= @product.stock %></p>
+  <p class="mb-4 dark:text-gray-300"><strong>Category:</strong> <%= @product.category.name %></p>
+</div>
 
 <h2>Images</h2>
-<% @product.images.each do |image| %>
-  <%= image_tag image %>
-<% end %>
+<div class="bg-white dark:bg-gray-800 shadow-md rounded p-4 mb-4">
+  <% @product.images.each do |image| %>
+    <%= image_tag image, class: "inline-block mr-2 mb-2 border rounded" %>
+  <% end %>
+</div>
 
 <h2>Sales</h2>
-<% @product.sales.each do |sale| %>
-  <p>Sale ID: <%= sale.id %>, Date: <%= sale.created_at.strftime("%B %d, %Y") %></p>
-<% end %>
+<div class="bg-white dark:bg-gray-800 shadow-md rounded p-4 mb-4">
+  <% @product.sales.each do |sale| %>
+    <p class="mb-1 dark:text-gray-300">Sale ID: <%= sale.id %>, Date: <%= sale.created_at.strftime("%B %d, %Y") %></p>
+  <% end %>
+</div>
 
-<%#= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>
+<%= link_to 'Back', products_path, class: "text-blue-500 hover:underline dark:text-blue-300" %>

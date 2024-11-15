@@ -1,0 +1,17 @@
+<div class="container mx-auto py-8 dark:bg-gray-900">
+  <div class="mb-8">
+    <h1><%= @category.name %></h1>
+    <p class="text-gray-600 dark:text-gray-400"><%= pluralize(@products.total_count, 'producto') %> en esta categoría</p>
+  </div>
+
+  <!-- Grid Layout -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+    <% @products.each do |product| %>
+      <%= render partial: 'shared/product_card', locals: { product: product, hide_category: true} %>
+    <% end %>
+  </div>
+
+  <div class="mt-8">
+    <%= paginate @products %>
+  </div>
+</div>

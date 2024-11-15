@@ -58,7 +58,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_13_225910) do
   create_table "products", force: :cascade do |t|
     t.string "name", null: false
     t.text "description", null: false
-    t.decimal "unit_price", precision: 10, scale: 2, null: false
+    t.decimal "price", precision: 10, scale: 2, null: false
     t.integer "stock", default: 0, null: false
     t.integer "category_id", null: false
     t.string "size"

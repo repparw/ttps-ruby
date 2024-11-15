@@ -1,7 +1,8 @@
 module Public
   class ProductsController < Public::BaseController
     def index
-      @products = Product.available.limit(20).order(created_at: :desc)
+      @q = Product.ransack(params[:q])
+      @products = @q.result(distinct: true).available.order(created_at: :asc).page(params[:page]).per(20)
       @categories = Category.all
     end
 
@@ -10,3 +11,4 @@ module Public
     end
   end
 end
+

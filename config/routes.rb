@@ -9,9 +9,7 @@ Rails.application.routes.draw do
   scope module: :public do
     root "storefront#index"
     resources :products, only: %i[index show]
-    resources :categories, only: :index do
-      resources :products, only: :index, module: :categories
-    end
+    resources :categories, only: %i[index show]
   end
 
   # Admin namespace
