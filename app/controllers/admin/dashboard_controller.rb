@@ -9,4 +9,3 @@ class Admin::DashboardController < Admin::BaseController
     @total_sales = Sale.sum(:total)
   end
 end
-

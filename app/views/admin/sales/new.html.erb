@@ -1,0 +1,82 @@
+<h1>Nueva Venta</h1>
+
+<% if @sale.errors.any? %>
+  <% flash.now[:alert] = @sale.errors.full_messages.join(', ') %>
+<% end %>
+
+<%= form_with(model: [:admin, @sale], local: true, class: "space-y-6") do |form| %>
+  <div class="field">
+    <%= form.label :user_id, "Usuario", class: "block text-sm font-medium text-gray-700 dark:text-gray-300" %>
+    <%= form.collection_select :user_id, User.all, :id, :username, {}, class: "mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :customer_id, "Cliente", class: "block text-sm font-medium text-gray-700 dark:text-gray-300" %>
+    <%= form.collection_select :customer_id, Customer.all, :id, :name, {}, class: "mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :sale_items, "Artículos de venta", class: "block text-sm font-medium text-gray-700 dark:text-gray-300 mb-4" %>
+    <div id="sale_items" class="space-y-4">
+      <%= form.fields_for :sale_items do |item_form| %>
+        <%= render 'sale_item_fields', f: item_form %>
+      <% end %>
+
+      <% if @sale.sale_items.empty? %>
+        <%= render 'sale_item_fields', f: form.fields_for(:sale_items, SaleItem.new, child_index: 'new_sale_items') %>
+      <% end %>
+    </div>
+
+    <%= link_to "Agregar Artículo", '#', 
+        id: "add_item", 
+        class: "mt-4 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 dark:bg-green-500 dark:hover:bg-green-600 dark:focus:ring-green-400" %>
+  </div>
+
+  <div class="actions mt-6">
+    <%= form.submit "Guardar Venta", class: "w-full inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:bg-indigo-500 dark:hover:bg-indigo-600 dark:focus:ring-indigo-400" %>
+  </div>
+
+  <%# Move the template inside the form block so it has access to the form builder %>
+  <div id="sale_item_template" style="display: none;">
+    <%= form.fields_for :sale_items, SaleItem.new, child_index: 'NEW_RECORD' do |item_form| %>
+      <%= render 'sale_item_fields', f: item_form %>
+    <% end %>
+  </div>
+<% end %>
+
+<%= javascript_tag do %>
+document.addEventListener("DOMContentLoaded", function() {
+  const saleItems = document.getElementById("sale_items");
+  const addItemButton = document.getElementById("add_item");
+  const template = document.getElementById("sale_item_template");
+
+  // Add new item
+  addItemButton.addEventListener("click", function(e) {
+    e.preventDefault();
+    const newId = new Date().getTime();
+    const newFields = template.innerHTML.replace(/NEW_RECORD/g, newId);
+    saleItems.insertAdjacentHTML("beforeend", newFields);
+  });
+
+  // Remove item
+  saleItems.addEventListener("click", function(e) {
+    if (e.target.classList.contains("remove_fields")) {
+      e.preventDefault();
+      const fields = document.querySelectorAll(".nested-fields");
+      if (fields.length > 1) {
+        const wrapper = e.target.closest(".nested-fields");
+        // If there's a hidden _destroy field, set it to 1
+        const destroyField = wrapper.querySelector("input[name*='_destroy']");
+        if (destroyField) {
+          destroyField.value = "1";
+          wrapper.style.display = "none";
+        } else {
+          wrapper.remove();
+        }
+      } else {
+        alert("Debe tener al menos un artículo en la venta");
+      }
+    }
+  });
+});
+<% end %>

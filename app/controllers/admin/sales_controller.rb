@@ -13,6 +13,7 @@ module Admin
 
     def new
       @sale = Sale.new
+      @sale.sale_items.build if @sale.sale_items.empty?
       authorize @sale
     end
 
@@ -45,7 +46,8 @@ module Admin
 
     def sale_params
       params.require(:sale).permit(
-        :client_id,
+        :user_id,
+        :customer_id,
         sale_items_attributes: [ :product_id, :quantity, :price ]
       )
     end

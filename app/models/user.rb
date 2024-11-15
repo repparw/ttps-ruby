@@ -25,4 +25,12 @@ class User < ApplicationRecord
   def active_for_authentication?
     super && deactivated_at.nil?
   end
+
+  def soft_delete
+    update(deactivated_at: Time.current)
+  end
+
+  def restore
+    update(deactivated_at: nil)
+  end
 end
