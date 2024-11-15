@@ -1,15 +1,32 @@
 require 'open-uri'
 
-# Create admin user
 User.find_or_create_by!(email: 'admin@avivas.com') do |user|
   user.username = 'admin'
-  user.password = 'password123'
+  user.password = 'admin123'
   user.phone = '1234567890'
   user.role = :admin
   user.joined_at = Time.current
 end
+puts 'Admin user created or already exists.'
 
-# Create categories (only if they don't exist)
+User.find_or_create_by!(email: 'manager@avivas.com') do |user|
+  user.username = 'manager'
+  user.password = 'manager123'
+  user.phone = '1122334455'
+  user.role = :manager
+  user.joined_at = Time.current
+end
+puts 'Manager user created or already exists.'
+
+User.find_or_create_by!(email: 'employee@avivas.com') do |user|
+  user.username = 'employee'
+  user.password = 'employee123'
+  user.phone = '0987654321'
+  user.role = :employee
+  user.joined_at = Time.current
+end
+puts 'Employee user created or already exists.'
+
 categories = %w[Running Training Basketball Soccer Tennis].map do |name|
   Category.find_or_create_by!(name: name)
 end

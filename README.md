@@ -1,24 +1,42 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Decisiones de Diseño
 
-Things you may want to cover:
+Documentar aquí cualquier decisión de diseño importante que se haya tomado.
 
-* Ruby version
+## Requisitos Técnicos
 
-* System dependencies
+* Ruby version: 3.0.0
+* Rails version: ~> 8.0.0
+* Base de datos: sqlite3 >= 2.1
+* Servidor web: Puma >= 5.0
+* Otras gemas interesantes:
+  * tailwindcss-rails (para styling)
+  * devise ~> 4.9 (autentificación)
+  * pundit (autorización)
+  * faker (generar datos random en el seed)
+  * rails_live_reload (live reload para development)
+  * kaminari ~> 1.2 (paginación)
+  * ransack ~> 4.2 (busqueda)
 
-* Configuration
+## Pasos para Ejecutar la Aplicación
 
-* Database creation
+1. Instalar las dependencias:
+    ```sh
+        bundle install
+    ```
 
-* Database initialization
+2. Configurar la base de datos:
+    ```sh
+        ./bin/rails db:create
+        ./bin/rails db:migrate
+    ```
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+3. Llenar de datos iniciales la base de datos:
+    ```sh
+        ./bin/rails db:seeds
+    ```
+4. Levantar servidor:
+    ```sh
+        ./bin/rails server
+    ```

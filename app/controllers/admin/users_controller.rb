@@ -16,9 +16,14 @@ module Admin
 
     def create
       @user = User.new(user_params)
-      if @user.save
-        redirect_to admin_user_path(@user), notice: "User was successfully created."
+      if current_user.admin? || (user_params[:role] != "admin")
+        if @user.save
+          redirect_to admin_user_path(@user), notice: "User was successfully created."
+        else
+          render :new
+        end
       else
+        @user.errors.add(:role, "You are not authorized to assign the admin role.")
         render :new
       end
     end
@@ -27,9 +32,14 @@ module Admin
     end
 
     def update
-      if @user.update(user_params.except(:password, :password_confirmation).merge(password_params))
-        redirect_to admin_user_path(@user), notice: "User was successfully updated."
+      if current_user.admin? || (user_params[:role] != "admin")
+        if @user.update(user_params.except(:password, :password_confirmation).merge(password_params))
+          redirect_to admin_user_path(@user), notice: "User was successfully updated."
+        else
+          render :edit
+        end
       else
+        @user.errors.add(:role, "You are not authorized to assign the admin role.")
         render :edit
       end
     end
