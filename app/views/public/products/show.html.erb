@@ -14,11 +14,4 @@
   <% end %>
 </div>
 
-<h2>Sales</h2>
-<div class="bg-white dark:bg-gray-800 shadow-md rounded p-4 mb-4">
-  <% @product.sales.each do |sale| %>
-    <p class="mb-1 dark:text-gray-300">Sale ID: <%= sale.id %>, Date: <%= sale.created_at.strftime("%B %d, %Y") %></p>
-  <% end %>
-</div>
-
 <%= link_to 'Back', products_path, class: "text-blue-500 hover:underline dark:text-blue-300" %>

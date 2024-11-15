@@ -18,7 +18,7 @@
     </p>
     <div class="flex justify-between items-center">
       <% if product.available? %>
-        <p class="text-green-500 dark:text-green-400 font-medium">En stock</p>
+        <p class="text-green-500 dark:text-green-400 font-medium">En stock (<%= product.stock %>)</p>
       <% else %>
         <p class="text-red-500 dark:text-red-400 font-medium">Agotado</p>
       <% end %>
@@ -28,3 +28,4 @@
     </div>
   </div>
 </div>
+

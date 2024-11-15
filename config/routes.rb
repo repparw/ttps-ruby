@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   # Public routes namespace
   scope module: :public do
-    root "storefront#index"
+    root "products#index"
     resources :products, only: %i[index show]
     resources :categories, only: %i[index show]
   end

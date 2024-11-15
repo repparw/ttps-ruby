@@ -4,18 +4,16 @@
       <%= link_to root_path, class: "flex items-center" do %>
         <%= image_tag "avivas.png", alt: "Avivas Logo", class: "h-16 w-auto" %>
       <% end %>
-      <div class="hidden md:flex space-x-8">
-        <%= link_to "Productos", products_path, class: "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white" %>
+      <div class="hidden md:flex space-x-8 justify-center flex-grow">
         <div class="relative group">
-          <%= link_to categories_path, class: "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white pb-4" do %>
+          <%= link_to categories_path, class: "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white pb-4 text-center" do %>
             Categorías
           <% end %>
-          <!-- Added a bridge element to prevent hover gap -->
           <div class="absolute w-full h-4 -bottom-4"></div>
           <div class="absolute left-0 transform -translate-x-1/4 hidden group-hover:block bg-white dark:bg-gray-700 shadow-lg rounded-md overflow-hidden min-w-[200px] mt-1 z-10">
             <div class="py-1">
               <% Category.all.each do |category| %>
-                <%= link_to category.name, category_path(category), class: "block px-4 py-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600 hover:text-gray-900 dark:hover:text-white whitespace-nowrap" %>
+                <%= link_to category.name, category_path(category), class: "block px-4 py-2 text-center text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600 hover:text-gray-900 dark:hover:text-white whitespace-nowrap" %>
               <% end %>
             </div>
           </div>
