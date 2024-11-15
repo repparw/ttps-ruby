@@ -46,6 +46,8 @@ gem "active_storage_validations"
 gem "devise", "~> 4.9"
 gem "pundit"
 gem "foreman"
+gem "kaminari", "~> 1.2"
+gem "ransack", "~> 4.2"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -72,8 +74,3 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
-
-gem "kaminari", "~> 1.2"
-
-
-gem "ransack", "~> 4.2"
