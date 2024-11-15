@@ -1,27 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html class="dark" lang="en">
   <head>
     <title>Avivas - Panel de Administración</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+    <%= render 'shared/head' %>
   </head>
 
-  <body class="min-h-screen bg-gray-100">
+  <body class="min-h-screen bg-gray-50 dark:bg-gray-900">
     <div class="flex">
-      <%= render 'admin/shared/sidebar' %>
-
       <div class="flex-1">
         <%= render 'admin/shared/header' %>
         <%= render 'shared/flash' %>
 
-        <main class="p-6">
+      <main class="container mx-auto px-4 py-8">
           <%= yield %>
         </main>
       </div>
     </div>
+    <%= render 'public/shared/footer' %>
   </body>
 </html>

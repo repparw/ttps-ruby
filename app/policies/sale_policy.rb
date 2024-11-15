@@ -1,19 +1,18 @@
 class SalePolicy < ApplicationPolicy
   def index?
-    user.present?
+    user.admin? || user.manager? || user.employee?
   end
 
   def show?
-    user.present?
+    user.admin? || user.manager? || user.employee?
   end
 
   def create?
-    user.present?
+    user.admin? || user.manager? || user.employee?
   end
 
   def cancel?
-    user.admin? || user.manager? ||
-      (user.employee? && record.user_id == user.id)
+    user.admin? || user.manager? || user.employee?
   end
 
   class Scope < Scope

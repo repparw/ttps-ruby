@@ -7,6 +7,10 @@ module Admin
       authorize @products
     end
 
+    def show
+      authorize @product
+    end
+
     def new
       @product = Product.new
       authorize @product
@@ -21,6 +25,10 @@ module Admin
       else
         render :new
       end
+    end
+
+    def edit
+      authorize @product
     end
 
     def update

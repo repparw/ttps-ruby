@@ -4,11 +4,23 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  enum :role, [ :customer, :employee, :manager, :admin ]
+  enum :role, [ :employee, :manager, :admin ]
 
   validates :username, presence: true, uniqueness: true
   validates :phone, presence: true
   validates :role, presence: true
+
+  def admin?
+    role == "admin"
+  end
+
+  def manager?
+    role == "manager"
+  end
+
+  def employee?
+    role == "employee"
+  end
 
   def active_for_authentication?
     super && deactivated_at.nil?

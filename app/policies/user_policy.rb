@@ -1,4 +1,3 @@
-# app/policies/user_policy.rb
 class UserPolicy < ApplicationPolicy
   def index?
     user.admin? || user.manager?
@@ -9,7 +8,7 @@ class UserPolicy < ApplicationPolicy
   end
 
   def create?
-    user.admin? || user.manager?
+    user.admin? || (user.manager? && !record.admin?)
   end
 
   def update?
@@ -29,7 +28,7 @@ class UserPolicy < ApplicationPolicy
       if user.admin?
         scope.all
       elsif user.manager?
-        scope.where.not(role: :admin)
+        scope.all
       else
         scope.none
       end

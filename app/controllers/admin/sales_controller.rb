@@ -7,6 +7,10 @@ module Admin
       authorize @sales
     end
 
+    def show
+      authorize @sale
+    end
+
     def new
       @sale = Sale.new
       authorize @sale

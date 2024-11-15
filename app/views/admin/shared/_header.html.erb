@@ -1,14 +1,44 @@
-<header class="bg-white shadow">
-  <div class="flex justify-between items-center px-6 py-4">
-    <h1>Panel de Administración</h1>
+<header class="bg-white dark:bg-gray-800 shadow">
+  <div class="flex justify-between items-center px-6 py-4 h-full">
+    <div class="flex-1 flex justify-start items-center h-full">
+      <div class="sidebar-header p-4">
+        <%= link_to admin_root_path, class: "text-xl font-bold" do %>
+          Admin Dashboard
+        <% end %>
+      </div>
+      <ul class="sidebar-nav flex space-x-4 ml-4">
+        <li class="p-2 hover:bg-gray-700">
+          <%= link_to admin_users_path, class: "flex items-center" do %>
+            <i class="fas fa-users mr-2"></i>
+            <span>Usuarios</span>
+          <% end %>
+        </li>
+        <li class="p-2 hover:bg-gray-700">
+          <%= link_to admin_products_path, class: "flex items-center" do %>
+            <i class="fas fa-boxes mr-2"></i>
+            <span>Productos</span>
+          <% end %>
+        </li>
+        <li class="p-2 hover:bg-gray-700">
+          <%= link_to admin_sales_path, class: "flex items-center" do %>
+            <i class="fas fa-shopping-cart mr-2"></i>
+            <span>Ventas</span>
+          <% end %>
+        </li>
+      </ul>
+    </div>
 
-    <div class="flex items-center">
-      <span class="text-gray-600 mr-4">
+    <div class="flex-1 flex items-center">
+      <h1>Panel de Administración</h1>
+    </div>
+
+    <div class="flex justify-end items-center h-full space-x-4">
+      <span class="text-gray-600 dark:text-gray-300 mr-4">
         <%= current_user.email %>
         (<%= current_user.role %>)
       </span>
       <%= link_to "Cerrar Sesión", destroy_user_session_path, method: :delete, 
-          class: "bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded" %>
+        class: "bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded" %>
     </div>
   </div>
 </header>

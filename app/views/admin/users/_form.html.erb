@@ -1,0 +1,41 @@
+<%= form_with(model: [:admin, @user], local: true, class: "space-y-6") do |form| %>
+
+  <div class="field">
+    <%= form.label :username, "Nombre de usuario", class: "block text-sm font-medium text-gray-700 dark:text-gray-300" %>
+    <%= form.text_field :username, class: "mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :email, "Correo electrónico", class: "block text-sm font-medium text-gray-700 dark:text-gray-300" %>
+    <%= form.email_field :email, class: "mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :role, "Rol", class: "block text-sm font-medium text-gray-700 dark:text-gray-300" %>
+    <%= form.select :role, options_for_select(current_user.admin? ? [['Admin', 'admin'], ['Manager', 'manager'], ['Employee', 'employee']] : [['Employee', 'employee']], @user.role), {}, class: "mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :phone, "Teléfono", class: "block text-sm font-medium text-gray-700 dark:text-gray-300" %>
+    <%= form.telephone_field :phone, class: "mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :password, "Contraseña", class: "block text-sm font-medium text-gray-700 dark:text-gray-300" %>
+    <%= form.password_field :password, class: "mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :password_confirmation, "Confirmar contraseña", class: "block text-sm font-medium text-gray-700 dark:text-gray-300" %>
+    <%= form.password_field :password_confirmation, class: "mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :joined_at, "Fecha de ingreso", class: "block text-sm font-medium text-gray-700 dark:text-gray-300" %>
+    <%= form.date_field :joined_at, class: "mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit class: "inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:bg-indigo-500 dark:hover:bg-indigo-600 dark:focus:ring-indigo-400" %>
+  </div>
+<% end %>

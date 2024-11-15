@@ -62,11 +62,11 @@
   }
 
   h3 {
-    @apply text-xl font-semibold mb-4 text-center;
+    @apply text-xl font-semibold mb-4;
   }
 
   h4 {
-    @apply text-lg font-semibold mb-4 text-center;
+    @apply text-lg font-semibold mb-4;
   }
 
   h1,
@@ -89,5 +89,10 @@
 
   a:hover {
     color: hsl(var(--muted-foreground));
+  }
+
+  aside {
+    @apply bg-gray-100 dark:bg-gray-800 p-4 rounded-lg shadow-md h-full;
+    color: hsl(var(--foreground));
   }
 }

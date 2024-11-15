@@ -1,22 +1,22 @@
 class ProductPolicy < ApplicationPolicy
   def index?
-    user.present?
+    user.admin? || user.manager? || user.employee?
   end
 
   def show?
-    user.present?
+    user.admin? || user.manager? || user.employee?
   end
 
   def create?
-    user.admin? || user.manager?
+    user.admin? || user.manager? || user.employee?
   end
 
   def update?
-    user.admin? || user.manager?
+    user.admin? || user.manager? || user.employee?
   end
 
   def destroy?
-    user.admin? || user.manager?
+    user.admin? || user.manager? || user.employee?
   end
 
   class Scope < Scope

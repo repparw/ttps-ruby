@@ -1,0 +1,7 @@
+<h1>Nuevo Usuario</h1>
+
+<% if @user.errors.any? %>
+  <% flash.now[:alert] = @user.errors.full_messages.join(', ') %>
+<% end %>
+
+<%= render 'form', user: @user %>
