@@ -1,9 +1,9 @@
 module Admin
   class ProductsController < Admin::BaseController
-    before_action :set_product, only: [ :show, :edit, :update, :destroy ]
+    before_action :set_product, only: [:show, :edit, :update, :destroy]
 
     def index
-      @products = Product.all
+      @products = Product.order(created_at: :desc).page(params[:page]).per(10)
       authorize @products
     end
 
@@ -20,6 +20,11 @@ module Admin
       @product = Product.new(product_params)
       authorize @product
 
+      if params[:product][:images].nil? || params[:product][:images].all?(&:blank?)
+        @product.errors.add(:images, "must be uploaded when creating a new product")
+        render :new and return
+      end
+
       if @product.save
         redirect_to admin_products_path, notice: "Producto creado exitosamente."
       else
@@ -33,7 +38,17 @@ module Admin
 
     def update
       authorize @product
-      if @product.update(product_params)
+
+      # Include images if new files were actually selected
+      has_new_images = params[:product][:images]&.any? { |image| !image.blank? }
+
+      if has_new_images
+        update_successful = @product.update(product_params)
+      else
+        update_successful = @product.update(product_params.except(:images))
+      end
+
+      if update_successful
         redirect_to admin_products_path, notice: "Producto actualizado exitosamente."
       else
         render :edit

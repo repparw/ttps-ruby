@@ -12,6 +12,7 @@
         <% end %>
       </div>
     </div>
+
     <ul class="space-y-4">
       <% if @users.empty? %>
         <li class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md flex justify-between items-center mb-2">
@@ -29,12 +30,18 @@
             </div>
             <div class="flex space-x-4 ml-4">
               <% if current_user.admin? || (current_user.manager? && !user.admin?) %>
-                <%= link_to 'Edit', edit_admin_user_path(user), class: "text-blue-500 dark:text-blue-400 hover:underline mr-2" %>
+                <%= link_to 'Editar', edit_admin_user_path(user), class: "text-blue-500 dark:text-blue-400 hover:underline mr-2" %>
                 <% if current_user.admin? %>
                   <% if user.active_for_authentication? %>
-                    <%= button_tag 'Deactivate', type: 'button', class: 'text-red-500 dark:text-red-400 hover:underline mr-2', onclick: "confirmDelete(#{user.id})" %>
+                    <%= button_to 'Desactivar', deactivate_admin_user_path(user),
+                        method: :patch, 
+                        confirm: '¿Estás seguro de que deseas desactivar este usuario?',
+                        class: 'text-red-500 dark:text-red-400 hover:underline mr-2' %>
                   <% else %>
-                    <%= button_tag 'Activate', type: 'button', class: 'text-red-500 dark:text-red-400 hover:underline mr-2', onclick: "confirmDelete(#{user.id})" %>
+                    <%= button_to 'Activar', activate_admin_user_path(user),
+                        method: :patch,
+                        confirm: '¿Estás seguro de que deseas activar este usuario?',
+                        class: 'text-red-500 dark:text-red-400 hover:underline mr-2' %>
                   <% end %>
                 <% end %>
               <% end %>
@@ -43,15 +50,10 @@
         <% end %>
       <% end %>
     </ul>
-  </div>
 
-  <script>
-    function confirmDelete(userId) {
-      if (confirm('¿Estás seguro de que deseas desactivar este usuario?')) {
-        // Perform the delete action
-        window.location.href = '/admin/users/' + userId + '?_method=delete';
-      }
-    }
-  </script>
+    <div class="flex justify-center mt-4">
+      <%= paginate @users %>
+    </div>
+  </div>
 
 </body>

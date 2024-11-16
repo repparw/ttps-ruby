@@ -64,9 +64,9 @@
             <% if current_user.admin? || (current_user.manager? && !current_user.admin?) %>
               <div class="mt-4 flex justify-end space-x-2">
                 <% if sale.active? %>
-                  <%= button_to 'Cancel', cancel_admin_sale_path(sale), 
+                  <%= button_to 'Cancelar', cancel_admin_sale_path(sale), 
                       method: :patch,
-                      data: { confirm: 'Are you sure you want to cancel this sale?' },
+                      confirm: '¿Estás seguro de que deseas cancelar esta venta?',
                       class: 'text-red-500 dark:text-red-400 hover:underline ml-2' %>
                 <% end %>
               </div>
@@ -74,9 +74,9 @@
           </div>
         <% end %>
       <% end %>
-    </div>
-    <div class="mt-6">
-      <%= paginate @sales %>
+      <div class="flex justify-center mt-4">
+        <%= paginate @sales %>
+      </div>
     </div>
   </div>
 </body>

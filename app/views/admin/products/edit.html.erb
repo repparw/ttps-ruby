@@ -1,0 +1,7 @@
+<h1>Editar Producto</h1>
+
+<% if @product.errors.any? %>
+  <% flash.now[:alert] = @product.errors.full_messages.join(', ') %>
+<% end %>
+
+<%= render 'form', product: @product %>

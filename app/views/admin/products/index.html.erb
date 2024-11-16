@@ -10,7 +10,6 @@
         <span>Nuevo Producto</span>
       <% end %>
     </div>
-
     <ul class="space-y-4">
       <% @products.each do |product| %>
         <li class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md flex justify-between items-center mb-2">
@@ -29,19 +28,20 @@
               <p class="text-lg font-bold <%= 'text-red-500' if product.stock == 0 %>">Stock: <%= product.stock %></p>
           </div>
           <div class="flex space-x-4">
-            <%= link_to 'Edit', edit_admin_product_path(product), class: 'text-blue-500 hover:underline mr-4' %>
-            <%= button_tag 'Delete', type: 'button', class: 'text-red-500 hover:underline', onclick: "confirmDelete(#{product.id})" %>
+            <%= link_to 'Editar', edit_admin_product_path(product), class: 'text-blue-500 hover:underline mr-4' %>
+            <% if product.deleted_at.nil? %>
+              <%= button_to 'Borrar', 
+                    delete_admin_product_path(product), 
+                    method: :delete,
+                    confirm: '¿Estás seguro de que deseas eliminar este producto?',
+                    class: 'text-red-500 hover:underline' %>
+            <% end %>
+          </div>
         </li>
       <% end %>
+      <div class="flex justify-center mt-4">
+        <%= paginate @products %>
+      </div>
     </ul>
   </div>
-
-  <%= javascript_tag do %>
-    function confirmDelete(productId) {
-      if (confirm('Are you sure you want to delete this product?')) {
-        // Perform the delete action
-        window.location.href = '/admin/products/' + productId + '?_method=delete';
-      }
-    }
-  <% end %>
 </body>

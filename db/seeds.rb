@@ -27,9 +27,30 @@ User.find_or_create_by!(email: 'employee@avivas.com') do |user|
 end
 puts 'Employee user created or already exists.'
 
+puts 'Creating 10 random users...'
+10.times do
+  begin
+    user = User.create!(
+      username: Faker::Internet.unique.username,
+      email: Faker::Internet.unique.email,
+      password: 'password123',
+      phone: Faker::PhoneNumber.phone_number,
+      role: [ :admin, :manager, :employee ].sample,
+      joined_at: Time.current
+    )
+    puts "Created user: #{user.username} (#{user.email})"
+  rescue Faker::UniqueGenerator::RetryLimitExceeded
+    Faker::UniqueGenerator.clear
+    retry
+  end
+end
+puts '10 random users created.'
+
 categories = %w[Running Training Basketball Soccer Tennis].map do |name|
   Category.find_or_create_by!(name: name)
 end
+
+
 
 # Create sample customers (with duplicate checking)
 10.times do
@@ -46,7 +67,7 @@ end
 # Create sample products
 categories.each do |category|
   5.times do |i|
-    product_name = "#{category.name} Product #{i + 1}"
+    product_name = "Producto #{i + 1}"
 
     # Skip if product already exists
     next if Product.exists?(name: product_name, category: category)
@@ -91,5 +112,37 @@ categories.each do |category|
     end
   end
 end
+
+# Create sample sales
+puts 'Creating sample sales...'
+users = User.all
+customers = Customer.all
+products = Product.all
+
+10.times do
+  user = users.sample
+  customer = customers.sample
+
+  sale_items = []
+  3.times do
+    product = products.sample
+    quantity = Faker::Number.between(from: 1, to: [ product.stock, 5 ].min)
+    sale_items << SaleItem.new(product: product, quantity: quantity, price: product.price)
+  end
+
+  sale = Sale.new(
+    user: user,
+    customer: customer,
+    sale_date: Time.current,
+    sale_items: sale_items
+  )
+
+  if sale.save
+    puts "Created sale for user: #{user.username}, customer: #{customer.name}"
+  else
+    puts "Failed to create sale: #{sale.errors.full_messages.join(', ')}"
+  end
+end
+puts 'Sample sales created.'
 
 puts 'Seed completed successfully!'

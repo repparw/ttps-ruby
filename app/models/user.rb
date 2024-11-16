@@ -27,7 +27,10 @@ class User < ApplicationRecord
   end
 
   def soft_delete
-    update(deactivated_at: Time.current)
+    self.deactivated_at = Time.current
+    self.password = SecureRandom.hex(20)
+    self.password_confirmation = self.password
+    save!
   end
 
   def restore
