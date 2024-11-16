@@ -1,6 +1,6 @@
 module Admin
   class ProductsController < Admin::BaseController
-    before_action :set_product, only: [ :show, :edit, :update, :destroy ]
+    before_action :set_product, only: [ :show, :edit, :update, :delete ]
 
     def index
       @products = Product.order(created_at: :desc).page(params[:page]).per(10)
@@ -55,7 +55,7 @@ module Admin
       end
     end
 
-    def destroy
+    def delete
       authorize @product
       @product.soft_delete
       redirect_to admin_products_path, notice: "Producto eliminado exitosamente."

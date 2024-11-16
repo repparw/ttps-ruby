@@ -34,14 +34,12 @@
                 <% if current_user.admin? %>
                   <% if user.active_for_authentication? %>
                     <%= button_to 'Desactivar', deactivate_admin_user_path(user),
-                        method: :patch, 
-                        confirm: '¿Estás seguro de que deseas desactivar este usuario?',
-                        class: 'text-red-500 dark:text-red-400 hover:underline mr-2' %>
+                      method: :patch,
+                      class: 'text-red-500 dark:text-red-400 hover:underline mr-2' %>
                   <% else %>
                     <%= button_to 'Activar', activate_admin_user_path(user),
-                        method: :patch,
-                        confirm: '¿Estás seguro de que deseas activar este usuario?',
-                        class: 'text-red-500 dark:text-red-400 hover:underline mr-2' %>
+                      method: :patch,
+                      class: 'text-red-500 dark:text-red-400 hover:underline mr-2' %>
                   <% end %>
                 <% end %>
               <% end %>

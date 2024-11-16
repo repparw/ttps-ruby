@@ -15,7 +15,7 @@ class ProductPolicy < ApplicationPolicy
     user.admin? || user.manager? || user.employee?
   end
 
-  def destroy?
+  def delete?
     user.admin? || user.manager? || user.employee?
   end
 

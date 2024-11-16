@@ -66,7 +66,6 @@
                 <% if sale.active? %>
                   <%= button_to 'Cancelar', cancel_admin_sale_path(sale), 
                       method: :patch,
-                      confirm: '¿Estás seguro de que deseas cancelar esta venta?',
                       class: 'text-red-500 dark:text-red-400 hover:underline ml-2' %>
                 <% end %>
               </div>
