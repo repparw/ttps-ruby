@@ -17,6 +17,14 @@
 * Rails version: ~> 8.0.0
 * Base de datos: sqlite3 >= 2.1
 
+## Logins
+
+| Rol | Email           | Contraseña |
+|---------|-----------------|------------|
+| Admin   | admin@avivas.com | admin123  |
+| Manager    | manager@avivas.com  | manager123  |
+| Empleado    | employee@avivas.com  | employee123  |
+
 ## Pasos para Ejecutar la Aplicación
 
 0. Instalar [Ruby](https://www.ruby-lang.org/es/downloads/)
@@ -53,3 +61,5 @@
     ```sh
     ./bin/rails server
     ```
+
+

@@ -11,14 +11,25 @@ class Product < ApplicationRecord
   validates :stock, presence: true, numericality: { greater_than_or_equal_to: 0 }
   validates :images, presence: true, content_type: [ "image/png", "image/jpg", "image/jpeg" ], on: :create
   validates :category, presence: true
+  validates :entry_at, presence: true
 
   # Optional fields
   validates :size, allow_blank: true, length: { maximum: 50 }
   validates :color, allow_blank: true, length: { maximum: 30 }
 
+  before_update :set_modified_at
+
   # Scopes
   scope :active, -> { where(deleted_at: nil) }
   scope :available, -> { active.where("stock > 0") }
+
+  private
+
+  def set_modified_at
+    self.modified_at = Time.current
+  end
+
+  public
 
   def soft_delete
     update(deleted_at: Time.current, stock: 0)

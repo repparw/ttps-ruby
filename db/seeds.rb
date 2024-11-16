@@ -65,9 +65,13 @@ rescue Faker::UniqueGenerator::RetryLimitExceeded
 end
 
 # Create sample products
+
+product_counter = 1
+
 categories.each do |category|
-  5.times do |i|
-    product_name = "Producto #{i + 1}"
+  5.times do
+    product_name = "Producto #{product_counter}"
+    product_counter += 1
 
     # Skip if product already exists
     next if Product.exists?(name: product_name, category: category)
@@ -79,7 +83,8 @@ categories.each do |category|
       stock: Faker::Number.between(from: 10, to: 100),
       category: category,
       size: %w[S M L XL].sample,
-      color: Faker::Color.color_name
+      color: Faker::Color.color_name,
+      entry_at: Faker::Date.between(from: 1.year.ago, to: Date.current)
     )
 
     # Attempt to attach image with retry logic

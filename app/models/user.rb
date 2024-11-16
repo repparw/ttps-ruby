@@ -7,6 +7,7 @@ class User < ApplicationRecord
   enum :role, [ :employee, :manager, :admin ]
 
   validates :username, presence: true, uniqueness: true
+  # email is already validated by Devise
   validates :phone, presence: true
   validates :role, presence: true
 

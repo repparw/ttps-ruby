@@ -35,6 +35,11 @@
   </div>
 
   <div class="field">
+    <%= form.label :entry_at, "Fecha de Ingreso", class: "block text-sm font-medium text-gray-700 dark:text-gray-300" %>
+    <%= form.date_field :entry_at, value: @product.entry_at || Date.today, class: "mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300" %>
+  </div>
+
+  <div class="field">
     <%= form.label :images, "Imágenes", class: "block text-sm font-medium text-gray-700 dark:text-gray-300" %>
     <% if @product.new_record? %>
       <%= form.file_field :images, multiple: true, required: true, class: "mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300" %>
