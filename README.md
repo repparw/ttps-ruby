@@ -21,6 +21,13 @@
 
 0. Instalar [Ruby](https://www.ruby-lang.org/es/downloads/)
 
+1. Ejecutar script
+    ```sh
+        ./start.sh
+    ```
+
+ó
+
 1. Instalar las dependencias:
     ```sh
         bundle install
@@ -36,7 +43,13 @@
     ```sh
         ./bin/rails db:seed
     ```
-4. Levantar servidor:
+
+4. Construir los estilos de Tailwind CSS:
+    ```sh
+        ./bin/rails tailwindcss:build
+    ```
+
+5. Levantar servidor:
     ```sh
         ./bin/rails server
     ```
