@@ -7,7 +7,7 @@
       <ul class="space-y-2">
         <% @recent_sales.each do |sale| %>
           <li>
-            <%= link_to sale.id, admin_sale_path(sale), class: "text-blue-500 hover:underline dark:text-blue-300" %>
+            <span class="text-white-500 dark:text-white-300">#<%= sale.id %></span>
             <span class="text-gray-500 dark:text-gray-400">el <%= sale.created_at.strftime("%b %d, %Y") %></span>
           </li>
         <% end %>
