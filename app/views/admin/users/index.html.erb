@@ -1,7 +1,7 @@
-<body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen p-6 flex items-center justify-center">
-  <div class="max-w-md mx-auto text-center">
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen">
+  <div class="max-w-lg mx-auto text-center">
     <div class="max-w-6xl mx-auto">
-      <div class="flex justify-between items-center mb-6">
+      <div class="flex justify-between items-start">
         <h1>Usuarios</h1>
         <%= link_to new_admin_user_path,
           class: "inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:bg-indigo-500 dark:hover:bg-indigo-600 dark:focus:ring-indigo-400" do %>
@@ -30,10 +30,12 @@
             <div class="flex space-x-4 ml-4">
               <% if current_user.admin? || (current_user.manager? && !user.admin?) %>
                 <%= link_to 'Edit', edit_admin_user_path(user), class: "text-blue-500 dark:text-blue-400 hover:underline mr-2" %>
-                <% if user.active_for_authentication? %>
-                  <%= button_tag 'Deactivate', type: 'button', class: 'text-red-500 dark:text-red-400 hover:underline mr-2', onclick: "confirmDelete(#{user.id})" %>
-                <% else %>
-                  <%= button_tag 'Activate', type: 'button', class: 'text-red-500 dark:text-red-400 hover:underline mr-2', onclick: "confirmDelete(#{user.id})" %>
+                <% if current_user.admin? %>
+                  <% if user.active_for_authentication? %>
+                    <%= button_tag 'Deactivate', type: 'button', class: 'text-red-500 dark:text-red-400 hover:underline mr-2', onclick: "confirmDelete(#{user.id})" %>
+                  <% else %>
+                    <%= button_tag 'Activate', type: 'button', class: 'text-red-500 dark:text-red-400 hover:underline mr-2', onclick: "confirmDelete(#{user.id})" %>
+                  <% end %>
                 <% end %>
               <% end %>
             </div>
