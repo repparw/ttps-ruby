@@ -23,33 +23,33 @@
 
 1. Ejecutar script
     ```sh
-        ./start.sh
+    ./start.sh
     ```
 
 ó
 
 1. Instalar las dependencias:
     ```sh
-        bundle install
+    bundle install
     ```
 
 2. Configurar la base de datos:
     ```sh
-        ./bin/rails db:create
-        ./bin/rails db:migrate
+    ./bin/rails db:create
+    ./bin/rails db:migrate
     ```
 
 3. Llenar de datos iniciales la base de datos:
     ```sh
-        ./bin/rails db:seed
+    ./bin/rails db:seed
     ```
 
 4. Construir los estilos de Tailwind CSS:
     ```sh
-        ./bin/rails tailwindcss:build
+    ./bin/rails tailwindcss:build
     ```
 
 5. Levantar servidor:
     ```sh
-        ./bin/rails server
+    ./bin/rails server
     ```
